@@ -7,7 +7,7 @@ const BlogSchema = new Schema({
   content: { type: String, minLength: 50 },
   drafted_on: { type: Date, default: Date.now() },
   published_on: Date,
-  state: { type: String, enum: ['published', 'draft'] },
+  state: { type: String, enum: ['published', 'draft'], default: 'draft' },
   type: { type: String, enum: ['coding', 'growth'], default: 'growth' },
   scheduled_to_be_published_on: Date,
   last_saved: Date,
