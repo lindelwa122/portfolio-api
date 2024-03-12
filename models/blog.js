@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const BlogSchema = new Schema({
   title: { type: String, minLength: 3, maxLength: 50 },
   content: { type: String, minLength: 50 },
-  drafted_on: Date,
+  drafted_on: { type: Date, default: Date.now() },
   published_on: Date,
   state: { type: String, enum: ['published', 'draft'] },
   type: { type: String, enum: ['coding', 'growth'], default: 'growth' },
