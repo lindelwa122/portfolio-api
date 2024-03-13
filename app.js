@@ -4,6 +4,16 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const mongoose = require('mongoose');
+
+mongoose.set('strictQuery', false);
+const mongoDB = process.env.mongoDB;
+const main = async () => {
+  console.log('Connection initiated!');
+  await mongoose.connect(mongoDB);
+  console.log('Connection established!');
+}
+main().catch(err => console.error(err));
 
 const app = express();
 
