@@ -3,8 +3,10 @@ const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
 exports.create_draft = asyncHandler(async (req, res, next) => {
+  console.log('i do get here');
   const blog = new Blog();
   await blog.save();
+  console.log('do i get here though');
   return res.status(200).json({
     message: 'Draft created successfully!',
     blog_id: blog._id,
@@ -91,6 +93,7 @@ exports.publish = [
       last_saved: Date.now(),
       state: 'published',
       scheduled_to_be_published_on: req.body.scheduled_to_be_published_on,
+      _id: req.params.id,
     });
 
     const errors = validationResult(req);
