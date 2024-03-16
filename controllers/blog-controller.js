@@ -1,6 +1,21 @@
 const Blog = require('../models/blog');
+const BlogSerializer = require('../serializers/blog-serializer');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
+
+exports.get_all_drafts = asyncHandler(async (req, res, next) => {
+  const drafts = await Blog.find({ state: 'draft' }).exec();  
+
+  const draftList = drafts.map(draft => {
+    const serializedBlog = new BlogSerializer(draft);
+    serializedBlog.include('id title content last_saved');
+    return serializedBlog.getJSON();
+  });
+
+  res.status(200).json({
+    drafts: draftList,
+  });
+});
 
 exports.create_draft = asyncHandler(async (req, res, next) => {
   console.log('i do get here');
