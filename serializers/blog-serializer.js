@@ -1,6 +1,7 @@
 class BlogSerializer {
   constructor(Blog) {
     this.returnValue = {
+      id: Blog._id,
       title: Blog.title,
       content: Blog.content,
       drafted_on: Blog.drafted_on,
