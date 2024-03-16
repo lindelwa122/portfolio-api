@@ -17,6 +17,22 @@ exports.get_all_drafts = asyncHandler(async (req, res, next) => {
   });
 });
 
+exports.get_blog = asyncHandler(async (req, res, next) => {
+  if (!req.params.id) {
+    const err = new Error('The id parameter is required!');
+    err.status = 400;
+    return next(err);
+  }
+
+  const blog = await Blog.findById(req.params.id);
+
+  const serializedBlog = new BlogSerializer(blog).getJSON();
+
+  res.status(200).json({
+    blog: serializedBlog,
+  });
+});
+
 exports.create_draft = asyncHandler(async (req, res, next) => {
   console.log('i do get here');
   const blog = new Blog();
