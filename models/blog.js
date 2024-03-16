@@ -19,7 +19,7 @@ const BlogSchema = new Schema({
 });
 
 BlogSchema.virtual('url').get(function() {
-  return `/blog/${this._id}`;
+  return `/${this._id}`;
 });
 
 module.exports = mongoose.model('Blog', BlogSchema);
