@@ -50,6 +50,7 @@ exports.save_draft = [
       title: req.body.title,
       content: req.body.content,
       last_saved: Date.now(),
+      _id: req.params.id,
     });
 
     const errors = validationResult(req);
