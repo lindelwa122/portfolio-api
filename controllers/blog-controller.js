@@ -8,7 +8,7 @@ exports.get_all_drafts = asyncHandler(async (req, res, next) => {
 
   const draftList = drafts.map(draft => {
     const serializedBlog = new BlogSerializer(draft);
-    serializedBlog.include('id title content last_saved');
+    serializedBlog.include('id title content last_saved url');
     return serializedBlog.getJSON();
   });
 
