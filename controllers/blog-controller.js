@@ -25,7 +25,6 @@ const validateDraft = () => {
     .trim()
     .isLength({ min: 50 })
     .exists()
-    .escape()
   ];
 }
 
