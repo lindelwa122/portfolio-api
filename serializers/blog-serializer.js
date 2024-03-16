@@ -9,6 +9,7 @@ class BlogSerializer {
       state: Blog.state,
       last_saved: Blog.last_saved,
       stats: Blog.stats,
+      url: Blog.url,
     };
   }
 
