@@ -122,6 +122,7 @@ exports.publish = [
       title: req.body.title,
       content: req.body.content,
       last_saved: Date.now(),
+      published_on: Date.now(),
       state: 'published',
       scheduled_to_be_published_on: req.body.scheduled_to_be_published_on,
       _id: req.params.id,
