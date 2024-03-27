@@ -7,7 +7,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 mongoose.set('strictQuery', false);
-const mongoDB = process.env.mongoDB;
+const mongoDB = '';
 const main = async () => {
   console.log('Connection initiated!');
   await mongoose.connect(mongoDB);
@@ -43,7 +43,7 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.status(500).json({ error: err });
+  res.json({ error: err });
 });
 
 module.exports = app;
