@@ -17,6 +17,20 @@ exports.get_all_drafts = asyncHandler(async (req, res, next) => {
   });
 });
 
+exports.get_published_blogs = asyncHandler(async (req, res, next) => {
+  const published = await Blog.find({ state: 'published' }).exec();
+
+  const publishedList = published.map(blog => {
+    const serializedBlog = new BlogSerializer(blog);
+    serializedBlog.include('id title content published_on url');
+    return serializedBlog.getJSON();
+  });
+
+  res.status(200).json({
+    blogs: publishedList,
+  });
+});
+
 exports.get_blog = asyncHandler(async (req, res, next) => {
   if (!req.params.id) {
     const err = new Error('The id parameter is required!');
