@@ -7,7 +7,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 mongoose.set('strictQuery', false);
-const mongoDB = '';
+const mongoDB = process.env.mongoDB;
 const main = async () => {
   console.log('Connection initiated!');
   await mongoose.connect(mongoDB);
