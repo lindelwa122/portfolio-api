@@ -18,7 +18,9 @@ exports.get_all_drafts = asyncHandler(async (req, res, next) => {
 });
 
 exports.get_published_blogs = asyncHandler(async (req, res, next) => {
-  const published = await Blog.find({ state: 'published' }).exec();
+  const published = await Blog.find({ state: 'published' })
+    .sort({ 'published_on': -1 })
+    .exec();
 
   const publishedList = published.map(blog => {
     const serializedBlog = new BlogSerializer(blog);
