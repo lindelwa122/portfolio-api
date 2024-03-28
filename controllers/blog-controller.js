@@ -4,7 +4,9 @@ const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
 exports.get_all_drafts = asyncHandler(async (req, res, next) => {
-  const drafts = await Blog.find({ state: 'draft' }).exec();  
+  const drafts = await Blog.find({ state: 'draft' })
+    .sort({ 'last_saved': -1 })
+    .exec();  
 
   const draftList = drafts.map(draft => {
     const serializedBlog = new BlogSerializer(draft);
