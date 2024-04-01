@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const BlogSchema = new Schema({
-  title: { type: String, minLength: 3, maxLength: 50 },
+  title: { type: String, minLength: 3, maxLength: 100 },
   content: { type: String, minLength: 50 },
   drafted_on: { type: Date, default: Date.now() },
   published_on: Date,

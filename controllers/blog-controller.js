@@ -66,7 +66,7 @@ const validateDraft = () => {
   return [
     body('title')
     .trim()
-    .isLength({ min: 3, max: 50 })
+    .isLength({ min: 3, max: 100 })
     .exists()
     .escape(),
 
