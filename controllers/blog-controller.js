@@ -67,8 +67,7 @@ const validateDraft = () => {
     body('title')
     .trim()
     .isLength({ min: 3, max: 100 })
-    .exists()
-    .escape(),
+    .exists(),
 
     body('content')
     .trim()
