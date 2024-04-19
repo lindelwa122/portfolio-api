@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const BlogSchema = new Schema({
-  title: { type: String, minLength: 3, maxLength: 100 },
+  title: { type: String, minLength: 3, maxLength: 100, unique: true },
   content: { type: String, minLength: 50 },
   drafted_on: { type: Date, default: Date.now() },
   published_on: Date,
@@ -18,8 +18,10 @@ const BlogSchema = new Schema({
   }
 });
 
+const formatURL = require('../utils/format-url');
+
 BlogSchema.virtual('url').get(function() {
-  return `/blog/${this._id}`;
+  return `/blog/${formatURL(this.title || this.id)}`;
 });
 
 module.exports = mongoose.model('Blog', BlogSchema);
