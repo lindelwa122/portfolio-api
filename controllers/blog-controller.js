@@ -35,14 +35,19 @@ exports.get_published_blogs = asyncHandler(async (req, res, next) => {
   });
 });
 
+const formatURL = require('../utils/format-url');
+
 exports.get_blog = asyncHandler(async (req, res, next) => {
-  if (!req.params.id) {
+  if (!(req.params.id)) {
     const err = new Error('The id parameter is required!');
     err.status = 400;
     return next(err);
   }
 
-  const blog = await Blog.findById(req.params.id);
+  const blogs = await Blog.find();
+
+  const blog = blogs.find((blog) => formatURL(blog.title) === req.params.id)
+    || await Blog.findById(req.params.id);
 
   const serializedBlog = new BlogSerializer(blog).getJSON();
 
