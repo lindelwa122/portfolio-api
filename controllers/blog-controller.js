@@ -48,7 +48,7 @@ exports.get_blog = asyncHandler(async (req, res, next) => {
 
   console.log('blogs', blogs);
 
-  const blog = blogs.find((blog) => formatURL(blog.title) === req.params.id)
+  const blog = blogs.find((blog) => blog.title && formatURL(blog.title) === req.params.id)
     || await Blog.findById(req.params.id);
 
   console.log('blog', blog);
