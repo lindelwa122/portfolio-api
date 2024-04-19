@@ -46,8 +46,12 @@ exports.get_blog = asyncHandler(async (req, res, next) => {
 
   const blogs = await Blog.find();
 
+  console.log('blogs', blogs);
+
   const blog = blogs.find((blog) => formatURL(blog.title) === req.params.id)
     || await Blog.findById(req.params.id);
+
+  console.log('blog', blog);
 
   const serializedBlog = new BlogSerializer(blog).getJSON();
 
